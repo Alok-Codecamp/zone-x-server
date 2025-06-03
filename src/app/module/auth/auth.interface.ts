@@ -1,7 +1,7 @@
 
 
 
-export interface Ilogin {
+export interface ISignIn {
     userName: string;
     password: string;
 }

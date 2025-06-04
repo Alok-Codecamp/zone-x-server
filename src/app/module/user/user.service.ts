@@ -10,17 +10,17 @@ const signUpuserInDb = async (signupData: ISignup) => {
     }
 
     const shopnameExist = await UserModel.findOne({
-        shopName: { $in: signupData.shopName }
+        shopNames: { $in: signupData.shopNames }
     })
-
+    console.log(shopnameExist);
     if (shopnameExist) {
-        const usedShopNames = signupData.shopName.map((newItem: string) => {
-            return shopnameExist.shopName.filter(existingItem => existingItem === newItem)
+        const usedShopNames = signupData.shopNames.map((newItem: string) => {
+            return shopnameExist.shopNames.filter(existingItem => existingItem === newItem)
         })
-        throw new Error(`This ${usedShopNames} names used. please choise unique one!!`)
+        throw new Error(`This shop name ${usedShopNames} is used. please choise unique one!!`)
     }
     const result = await UserModel.create(signupData)
-    console.log(result);
+    // console.log(result);
     return result;
 }
 

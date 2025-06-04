@@ -11,14 +11,15 @@ const signInUserIntoDb = async (signInData: ISignIn) => {
         throw new Error('No account found with this username. Please sign up first.');
     }
 
-    const isPaswordMatched = bcrypt.compare(signInData.password, isUserExist.password);
+    const isPaswordMatched = await bcrypt.compare(signInData.password, isUserExist.password);
     if (!isPaswordMatched) {
         throw new Error('Access denied. The password you provided is incorrect');
     }
 
+
     const payload = {
         userName: isUserExist.userName,
-        shopName: isUserExist.shopName,
+        shopName: isUserExist.shopNames,
     }
     const expiresIn = signInData.rememberMe ? config.jwt_remember_expireIn : config.jwt_default_expireIn
     const expiresInoptions: SignOptions = {

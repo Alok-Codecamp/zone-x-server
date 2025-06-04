@@ -16,7 +16,7 @@ export const UserSchema = new Schema<ISignup>({
         type: String,
         required: true,
     },
-    shopName: {
+    shopNames: {
         type: [String],
         required: true,
     }

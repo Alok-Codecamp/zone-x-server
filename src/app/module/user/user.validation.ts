@@ -6,7 +6,7 @@ const createUserValidationSchema = z.object({
         /^(?=.*[0-9])(?=.*[!@#$%^&*])/,
         "Password must contain at least one number and one special character"
     ),
-    shopName: z.array(z.string().nonempty("Shop name can't be empty")).min(3, "At least 3 shop names are required!"),
+    shopNames: z.array(z.string().nonempty("Shop name can't be empty")).min(3, "At least 3 shop names are required!"),
 });
 
 export const userValidations = {
